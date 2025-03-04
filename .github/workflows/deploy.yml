@@ -11,9 +11,14 @@ permissions:
   id-token: write
 
 jobs:
+
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Clean cache and reinstall dependencies
+        run: |
+          rm -rf node_modules .pnpm-store .astro
+          pnpm install --force
       - name: Checkout your repository using git
         uses: actions/checkout@v4
         with:
